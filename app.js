@@ -17,7 +17,7 @@ const articleSchema = new mongoose.Schema({
     content: String
 });
 
-const Article = mongoose.model('Article', articlesSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 app.get('/', function(req, res){
     res.send('hello world!');
