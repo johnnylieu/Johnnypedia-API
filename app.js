@@ -19,9 +19,24 @@ const articleSchema = new mongoose.Schema({
 
 const Article = mongoose.model('Article', articleSchema);
 
-app.get('/', function(req, res){
-    res.send('hello world!');
-})
+app.get('/articles', function(req, res){
+    Article.find(function(err, results) {
+        if (!err) {
+            res.send(results);
+        } else { res.send(err) }
+    });
+});
+
+app.post('/articles', function(req, res){
+    newArticle = new Article({
+        title: (req.body.title).trim(),
+        content: req.body.content
+    })
+
+    newArticle.save();
+
+    res.send('New article received & added.');
+  });
 
 app.listen(port, function() {
     console.log(`Listening on port ${port}`);
