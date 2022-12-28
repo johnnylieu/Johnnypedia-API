@@ -33,10 +33,20 @@ app.post('/articles', function(req, res){
         content: req.body.content
     })
 
-    newArticle.save();
-
-    res.send('New article received & added.');
+    newArticle.save(function(err){
+        if (!err) {
+            res.send('New article received & added.');
+        } else {res.send(err);}
+    });
   });
+
+app.delete("/articles", function(req, res){
+    Article.deleteMany(function(err){
+        if (!err){
+            res.send("Succesfully deleted collection.");
+        } else {res.send(err);}
+    });
+});
 
 app.listen(port, function() {
     console.log(`Listening on port ${port}`);
