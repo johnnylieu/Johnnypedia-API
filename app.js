@@ -45,7 +45,7 @@ app.route('/articles')
                 res.send("Succesfully deleted collection.");
             } else {res.send(err);}
         });
-    })
+    });
 
 // app.get('/articles', function(req, res){
 //     Article.find(function(err, results) {
