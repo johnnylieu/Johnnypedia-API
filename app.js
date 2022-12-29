@@ -57,9 +57,9 @@ app.route('/articles/:articleTitle')
         });
     })
 
-    .put(function(req, res){
+    .patch(function(req, res){
         Article.findOneAndUpdate(
-            {title: req.params.articleTitle}, 
+            {title: req.params.articleTitle},
             {title: req.body.title, content: req.body.content},
             function(err, result){
                 if(!err) {
