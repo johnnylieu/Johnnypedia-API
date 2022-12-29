@@ -66,6 +66,14 @@ app.route('/articles/:articleTitle')
                     res.send(`${req.params.articleTitle} has been updated.`);
                 } else {res.send(err);}
             });
+    })
+
+    .delete(function(req, res){
+        Article.findOneAndDelete({title: req.params.articleTitle}, function(err, result){
+            if(!err) {
+                res.send(`${req.params.articleTitle} succesfully deleted.`);
+            } else {res.send(err);}
+        });
     });
 
 app.listen(port, function() {
