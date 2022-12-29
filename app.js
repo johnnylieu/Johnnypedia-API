@@ -69,7 +69,7 @@ app.route('/articles/:articleTitle')
     })
 
     .delete(function(req, res){
-        Article.findOneAndDelete({title: req.params.articleTitle}, function(err, result){
+        Article.deleteOne({title: req.params.articleTitle}, function(err, result){
             if(!err) {
                 res.send(`${req.params.articleTitle} succesfully deleted.`);
             } else {res.send(err);}
