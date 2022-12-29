@@ -24,7 +24,7 @@ app.route('/articles')
         Article.find(function(err, results) {
             if (!err) {
                 res.send(results);
-            } else { res.send(err) }
+            } else { res.send(err); }
         });
     })
     .post(function(req, res){
@@ -32,13 +32,13 @@ app.route('/articles')
             title: (req.body.title).trim(),
             content: req.body.content
         });
-    
+
         newArticle.save(function(err){
             if (!err) {
                 res.send('New article received & added.');
             } else {res.send(err);}
         });
-      })
+        })
     .delete(function(req, res){
         Article.deleteMany(function(err){
             if (!err){
@@ -46,6 +46,18 @@ app.route('/articles')
             } else {res.send(err);}
         });
     });
+
+app.route('/articles/:articleTitle')
+    .get(function(req, res){
+        articleTitle = req.params.articleTitle;
+    
+        Article.findOne({title: articleTitle}, function(err, result){
+            if(!err) {
+                res.send(result);
+            } else {res.send(err);}
+        });
+    });
+
 
 // app.get('/articles', function(req, res){
 //     Article.find(function(err, results) {
