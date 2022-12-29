@@ -49,9 +49,7 @@ app.route('/articles')
 
 app.route('/articles/:articleTitle')
     .get(function(req, res){
-        articleTitle = req.params.articleTitle;
-    
-        Article.findOne({title: articleTitle}, function(err, result){
+        Article.findOne({title: req.params.articleTitle}, function(err, result){
             if(result) {
                 res.send(result);
             } else if(!result) {res.send(`<h1>${articleTitle} does not exist.</h1>`);}
